@@ -1,4 +1,3 @@
-
 # Advanced PDF Chatbot
 
 This project provides an advanced chatbot powered by machine learning, capable of processing PDF documents and answering questions based on their contents. It uses **Sentence Transformers** for embedding and **TinyLlama** for generating responses, along with **Gradio** for the user interface.
@@ -33,7 +32,7 @@ It is recommended to use a virtual environment to manage the dependencies for th
 
 ### Step 2: Install Dependencies
 
-With the virtual environment activated, install the required dependencies from `requirements.txt`:
+With the virtual environment activated, install the required dependencies from `requirements.txt`. Additionally, if you are running this in a server or production environment, install `uvicorn` to serve the application:
 
 ```bash
 pip install -r requirements.txt
@@ -41,13 +40,10 @@ pip install -r requirements.txt
 
 ### Step 3: Run the Application
 
-You can run the application with the following command:
-
 ```bash
 python main.py
 ```
-
-This will start a local development server with hot-reloading, allowing you to interact with the chatbot via the Gradio interface at `http://127.0.0.1:8000`.
+This will start a local development server, allowing you to interact with the chatbot via the Gradio interface at `http://127.0.0.1:7860`.
 
 ## How to Use
 
@@ -57,22 +53,28 @@ This will start a local development server with hot-reloading, allowing you to i
 
 3. **Response**: The chatbot will provide a clear, concise answer, or inform you if the document does not contain enough information to answer the question.
 
+## Customizing Response Generation and Model
+
+- **Change the Response Attribute**: The model used for generating responses can be modified by adjusting the `tinyllama_api_url` in the code to point to another API or a different model endpoint.
+  
+- **Switch to a Different Model**: If you wish to use a different model for response generation, simply change the `tinyllama_api_url` to the appropriate model URL and update the `model` field in the API call within the `generate_response` method to the new model’s name.
+
+Example:
+
+```python
+self.tinyllama_api_url = "http://localhost:12345/api/generate"  # Replace with your model's API URL
+```
+
+```python
+"model": "new-model-name"  # Replace with the desired model name
+```
+
+These adjustments allow you to switch between different models or APIs as required.
+
 ## Requirements
 
 - Python 3.7+
 - CUDA (optional for GPU acceleration)
-  
-### Dependencies
-
-- `gradio`: For creating the web interface.
-- `torch`: For running deep learning models.
-- `sentence-transformers`: For embedding PDF text.
-- `numpy`: For numerical operations.
-- `requests`: For API calls.
-- `langchain`, `langchain_community`: For document loading and text splitting.
-- `scikit-learn`: For cosine similarity calculations.
-
-These dependencies are listed in `requirements.txt` for easy installation.
 
 ## Troubleshooting
 
@@ -98,5 +100,5 @@ requests
 langchain
 langchain_community
 scikit-learn
-uvicorn
+pypdf
 ```
