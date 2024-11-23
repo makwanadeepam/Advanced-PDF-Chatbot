@@ -43,7 +43,7 @@ pip install -r requirements.txt
 ```bash
 python main.py
 ```
-This will start a local development server, allowing you to interact with the chatbot via the Gradio interface at `http://127.0.0.1:7860`.
+This will start a local development server, allowing you to interact with the chatbot via the Gradio interface at `http://127.0.0.1:7861` (can differ too).
 
 ## How to Use
 
